@@ -1,0 +1,82 @@
+{% extends 'base_page_shop.html' %}
+{% load static %}
+{%block title%}Shop - Single product{%endblock title%}
+{% block container %}
+{% static "" as baseUrl %}
+
+      <div class="main">
+        <section class="module">
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 mb-sm-40"><a class="gallery" href='{{ baseUrl }}/{{ product.image_url }}'><img src='{{ baseUrl }}/{{ product.image_url }}' alt="Single Product Image"/></a>
+                <ul class="product-gallery">
+                  <li><a class="gallery" href='{{ baseUrl }}/{{ product.image_url_2 }}'></a><img src='{{ baseUrl }}/{{ product.image_url_2 }}' alt=''/></li>
+                  <li><a class="gallery" href='{{ baseUrl }}/{{ product.image_url_3 }}'></a><img src='{{ baseUrl }}/{{ product.image_url_3 }}' alt=''/></li>
+
+                </ul>
+              </div>
+              <div class="col-sm-6">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h1 class="product-title font-alt">{{object.name}}</h1>
+                  </div>
+                </div>
+
+                <div class="row mb-20">
+                  <div class="col-sm-12">
+                    <div class="price font-alt"><span class="amount">$ {{object.price}}</span></div>
+                  </div>
+                </div>
+                <div class="row mb-20">
+                  <div class="col-sm-12">
+                    <div class="description">
+                      <p>{{product.note}}</p>
+                    </div>
+                  </div>
+                </div>
+                <form method="post" action='{% url "add_item_to_cart" object.pk %}'>
+                  {% csrf_token %}
+                  <div class="row mb-20">
+                    <div class="col-sm-4 mb-sm-20">
+                      <input class="form-control input-lg" type="number" name="quantity" id='id_quantity' value="1" max="40" min="1" required/>
+                    </div>
+                    <div class="col-sm-8">
+                      <button class="btn btn-lg btn-block btn-round btn-b" type='submit'>Add To Cart</button>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row mb-20">
+
+                </div>
+              </div>
+            </div>
+            <div class="row mt-70">
+
+            </div>
+          </div>
+
+        </section>
+
+
+
+
+        <hr class="divider-d">
+         <footer class="footer bg-dark">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="copyright font-alt">&copy; 2022&nbsp;<a href="{% url 'index' %}">RG Diadems</a>, All Rights Reserved</p>
+              </div>
+              <div class="col-sm-6">
+                <div class="footer-social-links"><a href="https://www.instagram.com/rg_diadem/"><i class="fa fa-instagram"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+      <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
+
+{% endblock container %}

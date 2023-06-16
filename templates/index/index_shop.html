@@ -1,0 +1,95 @@
+{% extends 'base_page_shop.html' %}
+{% load static %}
+{%block title%}Home{%endblock title%}
+{% block container %}
+
+      <section class="home-section home-fade home-full-height" id="home">
+        <div class="hero-slider">
+          <ul class="slides">
+            <li class="bg-dark-30 bg-dark shop-page-header" style="background-image:url(&quot;static/assets/images/shop/slider1.png&quot;);">
+              <div class="titan-caption">
+                <div class="caption-content">
+                  <div class="font-alt mb-30 titan-title-size-1">This is Diadems</div>
+                  <div class="font-alt mb-30 titan-title-size-4"> Rhythmic Gymnastic</div>
+                  <div class="font-alt mb-40 titan-title-size-1">Your online fashion destination</div><a class="section-scroll btn btn-border-w btn-round" href="{% url 'shop_product' %}">List of Diadems</a>
+                </div>
+              </div>
+            </li>
+            <li class="bg-dark-30 bg-dark shop-page-header" style="background-image:url(&quot;static/assets/images/shop/slider3.png&quot;);">
+              <div class="titan-caption">
+                <div class="caption-content">
+                  <div class="font-alt mb-30 titan-title-size-1"> This is Diadems</div>
+                  <div class="font-alt mb-40 titan-title-size-4">Exclusive products</div><a class="section-scroll btn btn-border-w btn-round" href="{% url 'shop_product' %}">List of Diadems</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <div class="main">
+        <section class="module-small">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">Best diadems</h2>
+              </div>
+            </div>
+            <div class="row multi-columns-row">
+              {% for product in object_list %}
+              {% if forloop.counter < 7 %}
+
+
+
+              <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="shop-item">
+                  {% static "" as baseUrl %}
+                  <div class="shop-item-image"><img src='{{ baseUrl }}/{{ product.image_url }}' alt="Accessories Pack"/>
+
+                    <div class="shop-item-detail">
+                      <a class="btn btn-round btn-b" href="{% url 'single_product' product.pk %}"><span class="icon-layers">Detail</span></a>
+
+                    </div>
+                  </div>
+                  <h4 class="shop-item-title font-alt"><a>{{product.name}}</a></h4>$ {{product.price}}
+                </div>
+              </div>
+              {%endif%}
+              {%endfor%}
+
+
+
+
+            <div class="row mt-30">
+              <div class="col-sm-12 align-center"><a class="btn btn-b btn-round" href="{% url 'shop_product' %}">See all products</a></div>
+            </div>
+          </div>
+        </section>
+        <section class="module module-video bg-dark-30" data-background="">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt mb-0">Be inspired. Get ahead of trends.</h2>
+              </div>
+            </div>
+          </div>
+          <div class="video-player" data-property="{videoURL:'https://www.youtube.com/watch?v=EMy5krGcoOU', containment:'.module-video', startAt:0, mute:true, autoPlay:true, loop:true, opacity:1, showControls:false, showYTLogo:false, vol:25}"></div>
+        </section>
+
+
+        <hr class="divider-d">
+        <footer class="footer bg-dark">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="copyright font-alt">&copy; 2022&nbsp;<a href="{% url 'index' %}">RG Diadems</a>, All Rights Reserved</p>
+              </div>
+              <div class="col-sm-6">
+                <div class="footer-social-links"><a href="https://www.instagram.com/rg_diadem/"><i class="fa fa-instagram"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+        </div>
+        <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
+{% endblock container %}
